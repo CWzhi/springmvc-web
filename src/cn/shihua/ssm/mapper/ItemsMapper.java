@@ -1,11 +1,13 @@
 package cn.shihua.ssm.mapper;
 
-import cn.shihua.ssm.pojo.Items;
-import cn.shihua.ssm.pojo.ItemsExample;
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
-public interface ItemsMapper {
+import cn.shihua.ssm.pojo.Items;
+import cn.shihua.ssm.pojo.ItemsExample;
+
+public interface ItemsMapper /*extends Mapper<Items>*/{
     int countByExample(ItemsExample example);
 
     int deleteByExample(ItemsExample example);

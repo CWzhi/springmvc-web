@@ -11,7 +11,36 @@
 	<context:component-scan base-package="cn.shihua.ssm.controller" />
 
 	<!-- 注解驱动 --><!-- 包括处理器适配器,处理器映射器 -->
-	<mvc:annotation-driven />
+	<mvc:annotation-driven  conversion-service="factoryConversionBean"/>
+	
+	<!-- 配置conversion转换器       转换工厂(转换日期,转换单位,去掉前后空格,等 -->
+	<!-- 配置转换工厂bean   工厂可以产生很多的转换器 -->
+	<bean id="factoryConversionBean" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+	<!-- 转换工厂可以配置多个转换器 -->
+		<property name="converters">
+			<list>
+				<!--  自定义转换器类  多个-->
+				<!-- 自定义转换日期 -->
+				<bean class="cn.shihua.ssm.utils.DateConverter">
+				
+				</bean>
+				
+			</list>
+		</property>
+	
+	</bean>
+	<!-- 配置全局异常处理器 -->
+<!-- <bean 
+id="customHandleException" 	class="cn.shihua.ssm.exception.handler.CustomHandleException"/>
+上传图片的实现类   图片解析器  -->
+	<!-- 文件上传,id必须设置为multipartResolver -->
+<bean id="multipartResolver"
+	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<!-- 设置文件上传大小 -->
+	<!--单位是B  -->
+	<property name="maxUploadSize" value="5000000" />
+</bean>
+	
 
 	<!-- Example: prefix="/WEB-INF/jsp/", suffix=".jsp", viewname="test" -> 
 		"/WEB-INF/jsp/test.jsp" -->

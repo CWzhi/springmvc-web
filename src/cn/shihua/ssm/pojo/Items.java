@@ -1,6 +1,7 @@
 package cn.shihua.ssm.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -16,8 +17,18 @@ public class Items {
     private @DateTimeFormat(pattern="yyyy-MM-dd")Date createtime;
 
     private String detail;
+    
+    private List<String> ids;
+    
+    public List<String> getIds() {
+		return ids;
+	}
 
-    public Integer getId() {
+	public void setIds(List<String> ids) {
+		this.ids = ids;
+	}
+
+	public Integer getId() {
         return id;
     }
 

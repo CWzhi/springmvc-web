@@ -12,7 +12,7 @@
 <body> 
 	<!-- 上传图片是需要指定属性 enctype="multipart/form-data" -->
 	<!-- <form id="itemForm" action="" method="post" enctype="multipart/form-data"> -->
-	<form id="itemForm"	action="${pageContext.request.contextPath }/updateitem.action" method="post">
+	<form id="itemForm"	action="${pageContext.request.contextPath }/updateitem.action" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="${item.id }" /> 修改商品信息：
 		<table width="100%" border=1>
 			<tr>
@@ -23,7 +23,7 @@
 				<td>商品价格</td>
 				<td><input type="text" name="price" value="${item.price }" /></td>
 			</tr>
-			<%-- 
+			
 			<tr>
 				<td>商品生产日期</td>
 				<td><input type="text" name="createtime"
@@ -39,10 +39,10 @@
 					<input type="file"  name="pictureFile"/> 
 				</td>
 			</tr>
-			 --%>
+			 
 			<tr>
 				<td>商品简介</td>
-				<td><textarea rows="3" cols="30" name="detail">${item.detail }</textarea>
+				<td><textarea rows="3" cols="30" name="detail">${ item.detail }</textarea>
 				</td>
 			</tr>
 			<tr>

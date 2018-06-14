@@ -28,6 +28,7 @@
 <%-- <c:forEach items="${itemList }" var="item"> --%>
 
 <tr>
+	<!-- input 框必须在td里面才能生效   否则都显示在table外面-->
 	<input name = "id" value="${item.id }" style="display:none" >
 	<td><input name = "name" value="${item.name }"></td>
 	<td><input name = "price" value="${item.price }"></td>
