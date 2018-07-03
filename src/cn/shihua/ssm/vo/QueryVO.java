@@ -28,6 +28,10 @@ public class QueryVO {
 	public void setItems(Items items) {
 		this.items = items;
 	}
+
+	
+
+	
 	
 	
 

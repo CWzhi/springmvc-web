@@ -71,7 +71,7 @@
 	<td><input type="text" name="itemList[${s.index}].createtime" value="<fmt:formatDate value="${item.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/>"/></td>
 	<td><input type="text" name="itemList[${s.index}].detail" value="${item.detail }"/></td>
 	
-	<td><a href="${pageContext.request.contextPath }/itemEdit.action?id=${item.id}">修改</a></td>
+	<td><a href="${pageContext.request.contextPath }/item/itemEdit.action?id=${item.id}">修改</a></td>
 
 </tr>
 </c:forEach> 

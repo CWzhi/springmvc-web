@@ -13,7 +13,7 @@
 	<!-- 注解驱动 --><!-- 包括处理器适配器,处理器映射器 -->
 	<mvc:annotation-driven  conversion-service="factoryConversionBean"/>
 	
-	<!-- 配置conversion转换器       转换工厂(转换日期,转换单位,去掉前后空格,等 -->
+	<!-- 配置conversion转换器       转换工厂(转换日期,转换单位,去掉前后空格,等 的转换器-->
 	<!-- 配置转换工厂bean   工厂可以产生很多的转换器 -->
 	<bean id="factoryConversionBean" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 	<!-- 转换工厂可以配置多个转换器 -->
@@ -30,15 +30,15 @@
 	
 	</bean>
 	<!-- 配置全局异常处理器 -->
-<!-- <bean 
+<bean 
 id="customHandleException" 	class="cn.shihua.ssm.exception.handler.CustomHandleException"/>
-上传图片的实现类   图片解析器  -->
+<!-- 上传图片的实现类   图片解析器   -->
 	<!-- 文件上传,id必须设置为multipartResolver -->
 <bean id="multipartResolver"
 	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	<!-- 设置文件上传大小 -->
 	<!--单位是B  -->
-	<property name="maxUploadSize" value="5000000" />
+	<property name="maxUploadSize" value="10240000" />
 </bean>
 	
 
@@ -52,5 +52,43 @@ id="customHandleException" 	class="cn.shihua.ssm.exception.handler.CustomHandleE
 		<!-- 配置逻辑视图的后缀 -->
 		<property name="suffix" value=".jsp" />
 	</bean>
+	
+	<!-- 配置springmvc的拦截器     可以配置多种拦截器-->
+	<mvc:interceptors>
+		<!--拦截器1  -->
+		<mvc:interceptor >
+			<!--拦截规则 拦截什么东西  --><!-- /springmvc-web/queryItemsList/2.action -->
+									<!--   项目名                          路径一                              路径2          -->
+									<!--    不算                            第一个*        第二个* -->
+			<!--拦截所有  --><!-- **表示中间可以有很多级目录 -->
+			<mvc:mapping path="/**"/>
+			<!--自定义的拦截器类  1-->
+			<bean  id="interceptor1" class="cn.shihua.ssm.interceptor.Interceptor1"/>
+			
+		</mvc:interceptor>
+		
+		<!--拦截器2  -->
+		<mvc:interceptor >
+			<!--拦截规则 拦截什么东西  --><!-- /springmvc-web/queryItemsList/2.action -->
+									<!--   项目名                          路径一                              路径2          -->
+									<!--    不算                            第一个*        第二个* -->
+			<mvc:mapping path="/**"/><!--拦截所有  --><!-- **表示中间可以有很多级目录 -->
+			<!--自定义的拦截器类  2-->
+			<bean  id="interceptor2" class="cn.shihua.ssm.interceptor.Interceptor2"/>
+			
+
+		</mvc:interceptor>
+		<!--拦截器3  -->
+		<mvc:interceptor >
+			<!--拦截规则 拦截什么东西  --><!-- /springmvc-web/queryItemsList/2.action -->
+									<!--   项目名                          路径一                              路径2          -->
+									<!--    不算                            第一个*        第二个* -->
+			<mvc:mapping path="/item/**"/>
+			<!-- 登录的/login 路径不能 拦截啊,所以得限制拦截路径 -->
+			<!--自定义的拦截器类  3  登录拦截器-->
+			<bean  id="loginInterceptor" class="cn.shihua.ssm.interceptor.LoginInterceptor"/>
+			
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 </beans>
